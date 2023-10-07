@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://w2ui.com/src/w2ui-1.5.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://w2ui.com/src/w2ui-1.5.min.js"></script>
+</head>
+<body>
+    <div id="myForm" style="width: 600px">
+        <div class="w2ui-page page-0">
+            <div class="w2ui-field">
+                <label>First Name:</label>
+                <div>
+                    <input name="first_name" id="first_name" maxlength="100" size="60"/>
+                </div>
+            </div>
+            <div class="w2ui-field">
+                <label>Last Name:</label>
+                <div>
+                    <input name="last_name" id="last_name" maxlength="100" size="60"/>
+                </div>
+            </div>
+            <div class="w2ui-field">
+                <label>Username:</label>
+                <div>
+                    <input name="username" id="username" maxlength="100" size="60"/>
+                </div>
+            </div>
+       
+        <div class="w2ui-field">
+            <label>Password:</label>
+            <div>
+                <input type = "password" name="password" id="password" maxlength="100" size="60"/>
+            </div>
+        </div>
+    </div>
+        <div class="w2ui-buttons">
+            <input type="button" value="Reset" name="reset"/>
+            <input type="button" value="Save" name="save"/>
+        </div>
+    </div>
+</body>
+<script>
+$(function () {
+    $('#myForm').w2form({
+        name   : 'myForm',
+        fields : [
+            { name: 'first_name', type: 'text', required: true },
+            { name: 'last_name',  type: 'text', required: true },
+            { name: 'username',  type: 'text', required: true },
+            { name: 'password',  type: 'text', required: true },
+        ],
+        actions: {
+            reset: function () {
+                this.clear();
+            },
+            save: function () {
+                var First_Name = $("#first_name");
+		 var Last_Name = $("last_name");
+		 var Username  = $("username");
+		 var Password  = $("password");
+		  if(First_Name && Last_Name && Username && Password)
+            {
+                $.ajax({
+                  url:'/SaveToDB',
+                  type: 'POST',
+                  data: {First_Name, Last_Name, Username, Password},
+                });
+                
+            }
+            }
+        }
+    });
+});
+</script>
+</html>

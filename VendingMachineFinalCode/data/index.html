@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vending machine</title>
+    <!-- You MUST include jQuery before Fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+
+
+    <style>
+	.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav h3 {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+@media screen and (max-height: 800px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav h3 {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+@media screen and (max-height: 800px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+input {
+    margin: 10px;
+    display: block;
+}
+
+@media screen and (max-height: 800px) {
+    .body {
+        margin: 300px 0px 0px 0px;
+        font-size: large;
+    }
+}
+
+       /* prevent page from loading if all components aren't ready yet*/
+        [v-cloak] {
+        display:none;
+        }
+        @media (min-width: 1281px) {
+            #wrapper {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width:1279px) {
+            body {
+                font-size: 2vh;
+            }
+            #wrapper {
+                grid-template-columns: 1fr 1fr;
+                
+            }
+        }
+
+        #wrapper {
+            display: grid;
+        }
+
+        .css_on {
+            color: blue;
+        }
+
+        .css_off {
+            color: black;
+        }
+       .off {
+            color:red;
+        }
+
+        </style>
+</head>
+<body>
+    <div id="app" v-model="StartUp()" v-cloak>
+        <!--Login page-->
+        <div id="Menu2" v-if="!UserIsLogged">
+            <div style=" margin: 150px 0px 0px 0px; text-align: center;">
+                <h1 style="text-align:center;">Login form</h1>
+                <form class="ui form">
+                    <div class="field">
+                        <label>Username</label>
+                        <input type="text" id="username" placeholder="Username">
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <input type="text" id="password" placeholder="Password">
+                    </div>
+                    <button class="ui button" type="button" v-on:click="LogIn()"><p>Login</p></button>
+                </form>
+            </div>
+        </div>
+
+        <div id="Menu" v-if="UserIsLogged">
+            <!--Admin's dashboard-->
+            <div v-if="!isAdmin">
+                <div id="Menu">
+                    <!--Sidebar-->
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav()">&times;</a>
+
+                        <h3 style="color:white; text-align:center;"><i class="user friends icon"></i>Users</h3>
+                        <a href="#" v-on:click="ShowPage('ViewUsers')"><i class="id card outline icon"></i> View users</a>
+                        <a href="#" v-on:click="ShowPage('AddUser')"><i class="user plus icon"></i> Add user</a>
+
+                        <h3 style="color:white; text-align:center;"><i class="gifts icon"></i>Products</h3>
+                        <a href="#" v-on:click="ShowPage('ViewProducts')"><i class="store icon"></i> View products</a>
+                        <a href="#" v-on:click="ShowPage('AddProduct')"><i class="plus icon"></i> Add product</a>
+
+                        <h3 style="color:white; text-align:center;"><i class="wrench icon"></i>VM actions</h3>
+                        <a href="#" v-on:click="openTheDoor()"><i class="unlock alternate icon"></i>Open the door</a>
+                        <a href="#" v-on:click="ShowPage('TestPush')"><i class="tools icon"></i>Test push</a>
+
+                        <a href="#" style="font-size: 20px; color: white; text-align: center;" v-on:click="UserIsLogged = false"><i class="power off icon"></i> Log out</a>
+                    </div>
+                </div>
+                <!--Open slide menu-->
+                <span style="font-size: 20px; cursor: pointer" v-on:click="openNav()">&#9776; Menu</span>
+                <!--If the "ViewUsers" button was pressed this div will be displayed on screen-->
+                <div class="ui basic segment" v-if="Menu.ViewUsers">
+                    <div id="isClicked">
+                        <div class="ui top attached tabular menu">
+                            <a class="item active" v-on:click="ShowSubmenu('ViewUsersMenu')" id="ViewUsers">
+                                ViewUsers
+                            </a>
+                            <a class="item" v-on:click="ShowSubmenu('DisableMenu')" id="Disable">
+                                Disabled Users
+                            </a>
+                        </div>
+                        <!--View users-->
+                        <div class="ui bottom attached segment" v-if="isClicked.ViewUsersMenu">
+
+                            <div class="row">
+                                <table class="ui unstackable table">
+                                    <thead>
+                                        <tr>
+                                            <th>CNP</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>                                
+                                            <th>isAdmin</th>
+                                            <th>isActive</th>
+                                            <th>Credit</th>
+                                            <th>TagNumber</th>
+                                            <th>Edit user</th>
+                                            <th>Disable User</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="(user, index) in users">
+                                            <tr>
+                                            <td id="userCNP">{{user.CNP}}</td>
+                                            <td id="FirstName">{{user.FirstName}}</td>
+                                            <td id="LastName">{{user.LastName}}</td>
+                                            <td id="isAdmin">{{user.IsAdmin}}</td>
+                                            <td id="isActive">{{user.IsActive}}</td>
+                                            <td id="Credit">{{user.Credit}}</td>
+                                            <td id="TagNumber">{{user.TagNumber}}</td>
+                                            <td style="text-align:center" id="editUserBtn" v-on:click="EditUserModal(user)">
+                                                <i class="edit outline icon"></i></td>
+                                            <td style="text-align:center" id="disableUser_btn" value="on" v-on:click="DisableUser11(user)">
+                                                <i class="user alternate slash icon"></i></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Disable users menu-->
+                        <div class="ui bottom attached segment" v-if="isClicked.DisableMenu">
+                            <div class="row">
+                                <table class="ui unstackable table">
+                                    <thead>
+                                        <tr>
+                                            <th>CNP</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>isAdmin</th>
+                                            <th>isActive</th>
+                                            <th>Credit</th>
+                                            <th>TagNumber</th>
+                                            <th>Edit user</th>
+                                            <th>Enable User</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="user in users">
+                                        <tr v-if="!user.IsActive">
+                                            <td id="id">{{user.CNP}}</td>
+                                            <td id="FirstName">{{user.FirstName}}</td>
+                                            <td id="LastName">{{user.LastName}}</td>
+                                            <td id="isAdmin">{{user.IsAdmin}}</td>
+                                            <td id="isActive">{{user.IsActive}}</td>
+                                            <td id="Credit">{{user.Credit}}</td>
+                                            <td id="TagNumber">{{user.TagNumber}}</td>
+                                            <td style="text-align:center" id="editUserBtn"><i class="edit outline icon disabled"></i></td>
+                                            <td style="text-align:center" id="disableUser_btn" value="on" v-on:click="EnableUser11(user)"><i class="user alternate slash icon" style="color:red;"></i></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                 
+                </div>
+
+                <!--If the "AddUser" button was pressed this div will be displayed on screen-->
+                <div class="ui basic segment" v-if="Menu.AddUser">
+                    <div style=" margin: 0px 0px 0px 0px; text-align: center;">
+                        <div class="content">
+                            <h2 style="color:black">Add user</h2>
+                            <form class="ui form">
+                                <div class="field">
+                                    <label>CNP</label>
+                                    <input type="text" id="CNP" placeholder="CNP">
+                                </div>
+
+                                <div class="field">
+                                    <label>First Name</label>
+                                    <input type="text" id="FirstName" placeholder="First Name">
+                                </div>
+
+                                <div class="field">
+                                    <label>Last Name</label>
+                                    <input type="text" id="LastName" placeholder="Last Name">
+                                </div>
+
+                                <div class="field">
+                                    <label>Password</label>
+                                    <input type="text" id="password" placeholder="Password">
+                                </div>
+
+                                <div class="field">
+                                    <label>TagNumber</label>
+                                    <input type="text" id="TagNumber" placeholder="TagNumber">
+                                </div>
+
+                                <div class="ui form">
+                                    <div class="grouped fields">
+                                        <label>Admin </label>
+
+                                        <div class="ui checkbox">
+                                            <input type="checkbox" id="CheckIfAdmin" value="CheckIfAdmin">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="ui button" type="button" v-on:click="SubmitAddUser()" style="background-color: aqua;">Add user</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Edit modal-->
+                <div class="ui modal user edit">
+                    <div class="actions">
+                        <div class=" actions ui cancel button">&times;</div>
+                    </div>
+                    <div class="header" style="text-align:center">Edit user's information</div>
+                    <div class="content">
+                        <form class="ui form">
+
+                            <div class="field">
+                                <label>First Name</label>
+                                <input type="text"  id="FirstName-modal" placeholder="First Name">
+                            </div>
+
+                            <div class="field">
+                                <label>Last Name</label>
+                                <input type="text" id="LastName-modal" placeholder="Last Name">
+                            </div>
+
+                            <div class="field">
+                                <label>Password</label>
+                                <input type="text" id="Password-modal" placeholder="Password">
+                            </div>
+
+                            <div class="field">
+                                <label>Credit</label>
+                                <div class="ui right labeled input">
+                                    <input type="number" placeholder="Credit" id="Credit-modal">
+                                    <div class="ui basic label">
+                                        RON
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui form">
+                                <div class="grouped fields">
+                                    <label>Admin </label>
+
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" id="CheckIfAdmin-modal" value="1">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>TagNumber</label>
+                                <input type="text" id="TagNumber-modal" placeholder="TagNumber">
+                            </div>
+
+                            <button class="ui button" type="button" v-on:click="SubmitEditUser()">Edit user</button>
+                            <button class="ui button" type="button" v-on:click="CloseModal()">Cancel</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!--If the "ViewProducts" button was pressed this div will be displayed on screen-->
+                <div class="ui basic segment" v-if="Menu.ViewProducts">
+                    <div id="ShowSubmenuProducts">
+                        <div class="ui top attached tabular menu">
+                            <a class="item active" v-on:click="ShowSubmenuProducts('ViewProductsMenu')" id="ViewProducts">
+                                View Products
+                            </a>
+                            <a class="item" v-on:click="ShowSubmenuProducts('DisableProductsMenu')" id="DisableProducts">
+                                Disabled products
+                            </a>
+
+                        </div>
+                        <div class="ui bottom attached segment" v-if="ProductsSubmenu.DisableProductsMenu">
+                            <div class="row">
+                                <table class="ui unstackable table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Position</th>
+                                            <th>Price</th>
+                                            <th>isActive</th>
+                                            <th>Edit product</th>
+                                            <th>Enable product</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="product in products">                                        
+                                        <tr v-if="!product.isActive">
+                                            <td>{{product.ID}}</td>
+                                            <td>{{product.Name}}</td>
+                                            <td>{{product.Quantity}}</td>
+                                            <td>{{product.Position}}</td>
+                                            <td>{{product.Price}}</td>
+                                            <td>{{product.isActive}}</td>
+                                            <td style="text-align:center"><i class="edit outline icon disabled"></i></td>
+                                            <td style="text-align:center"><i class="ban icon" v-on:click="EnableProduct(product)"
+                                                 style="color:red;"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="ui bottom attached segment" v-if="ProductsSubmenu.ViewProductsMenu">
+                            <div class="row">
+                                <table class="ui unstackable table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Position</th>
+                                            <th>Price</th>
+                                            <th>isActive</th>
+                                            <th>Edit product</th>
+                                            <th>Disable product</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="product in products">
+                                        <tr v-if="product.isActive">
+                                            <td>{{product.ID}}</td>
+                                            <td>{{product.Name}}</td>
+                                            <td>{{product.Quantity}}</td>
+                                            <td>{{product.Position}}</td>
+                                            <td>{{product.Price}}</td>
+                                            <td>{{product.isActive}}</td>
+                                            <td style="text-align:center"><i class="edit outline icon" v-on:click="EditProductModal(product)"></i></td>
+                                            <td style="text-align:center"><i class="ban icon" v-on:click="DisableProduct(product)"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <!--If the "AddProduct" button was pressed this div will be displayed on screen-->
+                <div class="ui basic segment" v-if="Menu.AddProduct">
+                    <div style=" margin: 0px 0px 0px 0px; text-align: center;">
+                        <div class="content">
+                            <h2 style="color:black">Add product</h2>
+                            <form class="ui form">
+                                <div class="field">
+                                    <label>ID</label>
+                                    <input type="text" id="ID" placeholder="Name">
+                                </div>
+                                <div class="field">
+                                    <label>Name</label>
+                                    <input type="text" id="Name" placeholder="Name">
+                                </div>
+
+                                <div class="field">
+                                    <Label>Quantity:</Label>
+                                    <div class="ui labeled input">
+
+                                        <input type="number" id="Quantity" min="0" max="4" step="1" value="0">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="ui labeled input">
+                                        <div class="ui label">Position</div>
+                                        <select class="ui selection dropdown" @change="SelectPosition($event)" style="height: fit-content;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label>Price</label>
+                                    <div class="ui right labeled input">
+                                        <input type="text" id="Price" placeholder="Price">
+                                        <div class="ui basic label">
+                                            RON
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="ui button" type="button" v-on:click="SubmitAddProduct()" style="background-color: aqua;">Add product</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--Edit modal for products-->
+                <div class="ui modal product edit">
+                    <div class="actions">
+                        <div class=" actions ui cancel button">&times;</div>
+                    </div>
+                    <div class="header" style="text-align:center">Edit product's information</div>
+                    <div class="content">
+                        <form class="ui form">
+
+                            <div class="field">
+                                <label>Name</label>
+                                <input type="text" id="ProductName" placeholder="Name">
+                            </div>
+
+                            <div class="field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">Position</div>
+                                    <select class="ui selection dropdown" @change="SelectPosition($event)" style="height: fit-content;" id="ProductPosition">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Price</label>
+                                <div class="ui right labeled input">
+                                    <input type="number" id="ProductPrice" placeholder="Price">
+                                    <div class="ui basic label">
+                                        RON
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <Label>Quantity:</Label>
+                                <div class="ui input">
+                                    <input type="number" id="quantity" min="0" max="12" step="1" value="0">
+                                </div>
+                            </div>
+
+                            <button class="ui button" type="button" v-on:click="SubmitEditProduct()">Edit product</button>
+                            <button class="ui button" type="button" v-on:click="CloseModal()">Cancel</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!--Modal popup disable user-->
+                <div class="mini modal m1" style="display:none">
+                    <div class="ui icon header">
+                        <i class="warning icon" style="color: #FA1B1B"></i>
+                        <h3 style="color:aliceblue">Action message</h3>
+                    </div>
+                    <div class="content">
+                        <p id="ModalMessage" style="color:aliceblue"></p>
+                        <br />
+                    </div>
+                    <div class="actions">
+                        <div class="ui green ok inverted button" v-on:click="!UserActive">
+                            <i class="checkmark icon" ></i>
+                            Ok
+                        </div>
+                        <div class="ui red basic cancel inverted button">
+                            <i class="remove icon"></i>
+                            Close
+                        </div>
+                    </div>
+                </div>
+                <!---Modal popup disable product-->
+                <div class="mini modal disable product" style="display:none">
+                    <div class="ui icon header">
+                        <i class="warning icon" style="color: #FA1B1B"></i>
+                        <h3 style="color:aliceblue">Action message</h3>
+                    </div>
+                    <div class="content">
+                        <p id="ModalMessage" style="color:aliceblue"></p>
+                        <br />
+                    </div>
+                    <div class="actions">
+                        <div class="ui green ok inverted button" v-on:click="DisableProduct()">
+                            <i class="checkmark icon"></i>
+                            Ok
+                        </div>
+                        <div class="ui red basic cancel inverted button">
+                            <i class="remove icon"></i>
+                            Close
+                        </div>
+                    </div>
+                </div>
+                <!--Advance admin-->
+                <div class="ui basic segment" v-if="Menu.AdvanceAdmin">
+                    <h1>Run SQLite script</h1>
+
+        <form >
+            <p><label for="SQLiteCommand">Insert SQLite command:</label></p>
+            <textarea id="SQLiteCommand" name="SQLiteCommand" rows="4" cols="50"></textarea>
+            <br>
+            <button class="ui button" type="button" v-on:click="GoToSendSQLCommand()">Run</button>
+        </form>
+
+        <p>
+            Click the "Submit" button and the form-data will be sent to the server.
+        </p>
+
+        <hr>
+        <table class="table">
+            <thead>
+                <tr style="background-color :antiquewhite">
+                    <th v-for="(value, name) in result[0]"> {{name}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in result"  >
+                    <td v-for="(value, name) in item">{{value}}</td>
+                </tr>
+            </tbody>
+        </table>
+                </div>
+                <!--TestPush-->
+                <div class="ui basic segment" v-if="Menu.TestPush">
+                    <div id="wrapper">
+                        <div>
+                            <i id='motor1' class='sync icon css_off' style="display:none;"></i>
+                            <div v-if="isPushed1" class="ui active red inline loader"></div>
+                            <br>
+                            <p>Test motor 1:</p>
+
+                            <input type='button' class='ui button' id='id_button1' value='Push 360' v-on:click="Motor1()">
+                        </div>
+
+                        <div>
+                            <i id='motor2' class='sync icon  css_off' style="display:none;"></i>
+                            <div v-if="isPushed2" class="ui active red inline loader"></div>
+                            <br>
+                            <p>Test motor 2:</p>
+
+                            <input type='button' class='ui button' id='id_button2' value='Push 360' v-on:click="Motor2()">
+                        </div>
+
+                        <div>
+                            <i id='motor3' class='sync icon  css_off' style="display:none;"></i>
+                            <div v-if="isPushed3" class="ui active red inline loader"></div>
+                            <br>
+                            <p>Test motor 3:</p>
+
+                            <input type='button' class='ui button' id='id_button3' value='Push 360' v-on:click="Motor3()">
+                        </div>
+
+                        <div>
+                            <i id='motor4' class='sync icon  css_off' style="display:none;"></i>
+                            <div v-if="isPushed4" class="ui active red inline loader"></div>
+                            <br>
+                            <p>Test motor 4:</p>
+                            <input type='button' class='ui button' id='id_button4' value='Push 360' v-on:click="TestPushMotor4()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--User's dashboard-->
+            <div v-else>
+                <div id="Menu">
+                    <!--Sidebar-->
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav()">&times;</a>
+
+                        <h3 style="color:white; text-align:center;"><i class="user friends icon"></i>Users</h3>
+                        <a href="#" v-on:click="ShowPage('AccountInfo')"><i class="id card outline icon"></i> Account's info</a>
+                        <a href="#" v-on:click="ShowPage('ChangePassword')"><i class="user edit icon"></i> Change password</a>
+                        <a href="#" v-on:click="ShowPage('ViewPurchaseHistory')"><i class="user clock icon"></i> View purchase history</a>
+                        <a href="#" v-on:click="UserIsLogged = false"><i class="power off icon"></i> Log out</a>
+                    </div>
+
+                    <!--Open slide menu-->
+                    <span style="font-size: 20px; cursor: pointer" v-on:click="openNav()">&#9776; Menu</span>
+                    <!--If the "AccountInfo" button was pressed this div will be displayed on screen-->
+                    <div class="ui basic segment" v-if="Menu.AccountInfo">
+                        <h3 class="ui header">Account's info</h3>
+                        <div class="row">
+                            <table class="ui unstackable table">
+                                <thead>
+                                    <tr>
+                                        <th>CNP</th>
+                                        <th>FirstName</th>
+                                        <th>LastName</th>
+                                        <th>isAdmin</th>
+                                        <th>Credit</th>
+                                        <th>TagNumber</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="user in users">
+                                        <td>{{user.CNP}}</td>
+                                        <td>{{user.FirstName}}</td>
+                                        <td>{{user.LastName}}</td>
+                                        <td>{{user.isAdmin}}</td>
+                                        <td>{{user.Credit}}</td>
+                                        <td>{{user.TagNumber}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--If the "ChangePassword" button was pressed this div will be displayed on screen-->
+                    <div class="ui basic segment" v-if="Menu.ChangePassword">
+                        <div style=" margin: 150px 0px 0px 0px; text-align: center;">
+                            <h4>In order to change your password you have to enter your old password and the new password two times</h4>
+                            <form class="ui form">
+                                <div class="field">
+                                    <label>Old password:</label>
+                                    <input type="text" id="oldPassword" placeholder="Enter old password">
+                                </div>
+
+
+                                <div class="field">
+                                    <label>New password:</label>
+                                    <input type="text" id="newPassword" placeholder="New password">
+                                </div>
+
+                                <div class="field">
+                                    <label>Confirmation:</label>
+                                    <input type="text" id="confirmation" placeholder="New password">
+                                </div>
+
+
+                                <button class="ui button" type="button" v-on:click="UserChangePassword()" style="background-color: aqua;">Change password</button>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!--If the "ViewPurchaseHistory" button was pressed this div will be displayed on screen-->
+                    <div class="ui basic segment" v-if="Menu.ViewPurchaseHistory">
+                        <div class="row">
+                            <table class="ui unstackable table">
+                                <thead>
+                                    <tr>
+                                        <th>Timestamp</th>
+                                        <th>TypeID</th>
+                                        <th>UserID</th>
+                                        <th>ProductID</th>
+                                        <th>Credit</th>
+                                        <th>Quantity</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="action in actions">
+                                        <td>{{action.Timestamp}}</td>
+                                        <td>{{action.TypeID}}</td>
+                                        <td>{{action.UserID}}</td>
+                                        <td>{{action.ProductID}}</td>
+                                        <td>{{action.Credit}}</td>
+                                        <td>{{action.Quantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       Vue.createApp({
+    el: '#App',
+    data() {
+        return {
+           crtUser:null,
+            result: [],
+            UserIsLogged: false,
+                UserInfo:{
+                    Error:{Message: null},
+                    Data:[]
+                },
+            Menu: {
+                MainPage: false,
+                
+                ViewUsers: false,
+                AddUser: false,
+                EditUser: false,
+                DisableUser: false,
+
+                ViewProducts: false,
+                AddProduct: false,
+                EditProduct: false,
+                DisableProduct: false,
+                ModifyQuantity: false,
+
+                TestPush: false,
+                AdvanceAdmin: false,
+                ModalPopup: false,
+                LoginPage: true,
+                
+                AccountInfo: false,
+                ChangePassword: false,
+                ViewPurchaseHistory: false,
+            },
+            isClicked: {
+                ViewUsersMenu: true,
+                DisableMenu: false
+            },
+            ProductsSubmenu: {
+                ViewProductsMenu: true,
+                DisableProductsMenu: false
+            },
+            quantity: 0,
+            crtProduct: [],
+            isPushed1: false,
+            isPushed2: false,
+            isPushed3: false,
+            isPushed4: false,
+            isAdmin: 0,
+            UserActive:true,
+            users: [],
+            products: [],
+            actions: [],
+            TempUserEdit: [],
+            AddUser: {
+                FirstName: '',
+                LastName: '',
+                Username: '',
+                Password: ''
+            },
+            ProductPosition: 0,
+            /*Get selected position*/
+            SelectPosition(e) {
+                console.log(e.target.value);
+                this.ProductPosition = e.target.value;
+            }
+
+        }
+
+    },
+    methods: {
+        async SendSQLCommand() {
+                    var sqlCommand = document.getElementById("SQLiteCommand").value;
+                    var url = encodeURI("/RunCommand" + "?" + "SQLCommand=" + sqlCommand);
+                    var result = await fetch(url);
+                    if (result.status == 200) {
+                        this.result = await result.json();
+                        
+                    }
+                },
+                GoToSendSQLCommand:function(){                   
+                    this.SendSQLCommand();
+                },
+                async openDoor(){
+                    var url = encodeURI("/OpenDoor" + "?" + "isOn = " + 1);
+                    var result = await fetch(url);
+                    if(result.status == 200){
+                        console.log("Opened");
+                    }else{
+                        console.log("Couldn't open the door");
+                    }
+        },
+        async GetUsers() {
+            const responseUsers = await fetch("/Users");
+            this.UserInfo.Users = await responseUsers.json();
+            this.users = this.UserInfo.Users;
+            
+        },
+        async GetProducts() {
+            const responseProducts = await fetch("/Products");
+            var jsonProducts = await responseProducts.json();
+            this.products = jsonProducts;
+           // console.log(products[0].Name);
+        },
+        openTheDoor:function(){
+            this.openDoor();
+        },
+        openNav: function () {
+            document.getElementById("mySidenav").style.width = "250px";
+        },
+        closeNav: function () {
+            document.getElementById("mySidenav").style.width = "0";
+        },
+        ShowPage: function (page) {
+            for (var property in this.Menu) {
+                this.Menu[property] = false;
+            }
+            this.Menu[page] = true;
+
+            if (page === "ViewUsers" || page === "EditUser" || page === "DisableUser" || page === "AccountInfo") {
+                this.GetUsers();
+            }
+            if (page == "ViewProducts") {
+                this.GetProducts();
+            }
+           
+          
+
+            document.getElementById("mySidenav").style.width = "0";
+        },
+
+        ShowSubmenu: function(page) {
+            if (page == "DisableMenu") {
+                for (var property in this.isClicked) {
+                    this.isClicked[property] = false;
+                    $("#ViewUsers").removeClass("active");
+                }
+                this.isClicked[page] = true;
+                $("#Disable").addClass("active");
+            }
+            else if (page == "ViewUsersMenu") {
+                for (var property in this.isClicked) {
+                    this.isClicked[property] = false;
+                    $("#Disable").removeClass("active");
+                }
+                this.isClicked[page] = true;
+                $("#ViewUsers").addClass("active");
+            }
+        },
+        ShowSubmenuProducts: function (page) {
+            if (page == "DisableProductsMenu") {
+                for (var property in this.ProductsSubmenu) {
+                    this.ProductsSubmenu[property] = false;
+                    $("#ViewProducts").removeClass("active");
+                }
+                this.ProductsSubmenu[page] = true;
+                $("#DisableProducts").addClass("active");
+            }
+            else if (page == "ViewProductsMenu") {
+                for (var property in this.ProductsSubmenu) {
+                    this.ProductsSubmenu[property] = false;
+                    $("#DisableProducts").removeClass("active");
+                }
+                this.ProductsSubmenu[page] = true;
+                $("#ViewProducts").addClass("active");
+            }
+
+        },
+        ModifyQuantity: function (quantity) {
+            $('#ModalMessage').html("Are you sure you want to add " + quantity + " products?");
+            $('.mini.modal')
+                .modal('show')
+                ;
+        },
+        CloseModal: function () {
+            $('.modal')
+                .modal('hide')
+                ;
+        },
+        ShowModal: function (message) {
+            $('#ModalMessage').html(message);
+            $('.mini.modal.m1')
+                .modal('show')
+                ;
+        },
+        ShowModalDisableUser: function (message) {
+           $('#ModalMessage').html(message);
+            $('.mini.modal.disable.user')
+                .modal('show')
+                ;
+        },
+        DisableUser:  function (user) {
+            this.DisableUsers(user);
+        },
+        EnableUser:  function (user) {
+           this.EnableUsers(user);
+        },
+        DisableProduct: function (product) {
+          
+            product.isActive = false;
+        },
+        EnableProduct: function (product) {
+            product.isActive = true;
+        },
+       
+        StartUp: function(){
+            if (this.UserInfo.Token != null) {
+                UserIsLogged = true;
+            } else {
+                this.LogIn();
+            }
+        },
+        async EnableUsers(user){
+          
+            var url = encodeURI("/EnableUser" + "?" + "CNP=" + user.CNP);
+            var result = await fetch(url);
+             if(result.status==200)
+             {                
+                 user.isActive = 1;
+                 alert(user.IsActive);
+             }
+            this.GetUsers();
+            console.log(user.isActive);
+           
+        },
+        async DisableUsers(user){
+            var url = encodeURI("/DisableUser" + "?" + "CNP=" + user.CNP);
+            var result = await fetch(url);
+             if(result.status==200)
+             {
+             user.isActive = 0;
+             alert(user.IsActive);
+             }
+            this.GetUsers();
+           
+        },
+        DisableUser11: function (user) {
+            alert("DisableUser11");
+            this.DisableUsers(user);
+          
+        },
+        EnableUser11: function (user) {
+            alert("EnableUser11");           
+            this.EnableUsers(user);
+          
+        },
+        DisableUserByIndex: function(index)
+        {
+            alert(index);
+            alert(this.users);
+            DisableUserByIndex2(index);
+        },
+        async DisableUserByIndex2(index) 
+        {
+            alert("DisableUserByIndex");
+            var url = encodeURI("/DisableUser" + "?" + "CNP=" + this.users[index].CNP);
+            var result = await fetch(url); 
+            if(result.status==200)
+            {
+            //console.log("this.user.isActive = " +  this.user.isActive);
+            this.users[index].isActive = true;
+            
+            //alert(user.isActive);
+            }
+        },
+
+        async submitUser() {
+            console.log(this.AddUser.FirstName, this.AddUser.LastName, this.AddUser.Username, this.AddUser.Password);
+
+            var url = encodeURI("/AddUser" + "?" + "FirstName=" + this.AddUser.FirstName + "&" + "LastName=" + this.AddUser.LastName);
+
+            const result = await fetch(url);
+            const text = await result.text();
+            console.log(text);
+
+            ShowModal(text);
+        },
+        async PostInServer(username, password) {
+            var url = encodeURI("/Users" + "?" + "Username=" + username + "&" + "Password=" + password);
+           
+
+          //Post in server
+        const requestOptions = {
+            method: "POST",
+
+            headers: { "Content-Type": "application/json", "Token" : UserInfo.Token },
+            body: JSON.stringify({url})
+        };
+        const AddUsers = await fetch("/Users", requestOptions);
+        const dataUsers = await AddUsers.json();
+        this.postId = dataUsers.id;
+         console.log(this.AddUser.FirstName, this.AddUser.LastName, this.AddUser.Username, this.AddUser.Password);
+        },
+        async LogIn() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;      
+            var url = encodeURI("/LogIn" + "?" + "Username=" + username + "&" + "Password=" + password);
+            var result = await fetch(url);   
+            if (result.status == 200) {
+                this.UserInfo.Data = await result.json();
+                if (!this.UserInfo.Data[0].isAdmin) {
+                    this.UserIsLogged = true;
+                    this.isAdmin = true;
+                    alert("Welcome back, " + this.UserInfo.Data[0].FirstName + "!");  
+                } else if (this.UserInfo.Data[0].isAdmin) {
+                    this.UserIsLogged = true;
+                    this.isAdmin = false;
+                    alert("Welcome back, " + this.UserInfo.Data[0].FirstName + "!");
+                } 
+            }else {
+                this.UserInfo.Error.Message = await result.json();
+                alert(this.UserInfo.Error.Message);
+                this.UserIsLogged = false;
+                this.isAdmin = false;
+            }                 
+        },
+        async EditUser() {
+            var toEditFirstName = document.getElementById("FirstName-modal").value;
+            var toEditLastName = document.getElementById("LastName-modal").value;
+            var toEditPassword = document.getElementById("Password-modal").value;
+            var toEditCredit = document.getElementById("Credit-modal").value;
+            var toEditAdmin = document.getElementById("CheckIfAdmin-modal");
+            if (toEditAdmin.checked == true) {
+                toEditAdmin = 1;
+            } else {
+                toEditAdmin = 0;
+            }
+            var toEditTagNumber = document.getElementById("TagNumber-modal").value;
+            var CNP = this.TempUserEdit.CNP;
+            if (toEditFirstName != "" && toEditLastName != "" && toEditCredit != "" &&  toEditTagNumber != "") {
+                var editUrl = encodeURI("/EditUsers" + "?" + "CNP=" + CNP + "&" + "toEditFirstName=" 
+                + toEditFirstName + "&" + "toEditLastName=" + toEditLastName + "&" + "toEditPassword=" 
+                + toEditPassword + "&" + "toEditCredit=" + toEditCredit + "&" + "toEditAdmin=" + toEditAdmin + "&" 
+                + "toEditTagNumber=" + toEditTagNumber);
+                var editResult = await fetch(editUrl);
+                console.log(editResult.status);
+                if (editResult.status == 200) {
+                    this.ShowModal("User's info has been updated!");
+                }
+                else {
+                    this.ShowModal("Couldn't update user's info!");
+                }
+            } else {
+                this.ShowModal("Fill all fields before submitting the form!");
+            }
+            this.GetUsers();
+            $('.modal')
+                .modal('hide')
+                ;
+            
+        },
+        async AddUserAction() {
+            var AddCNP = document.getElementById("CNP").value;
+            var AddFirstName = document.getElementById("FirstName").value;
+            var AddLastName = document.getElementById("LastName").value;
+            var AddPassword = document.getElementById("password").value;
+            var AddTagNumber = document.getElementById("TagNumber").value;
+            var CheckIfAdmin = document.getElementById("CheckIfAdmin");
+            if (CheckIfAdmin.checked == true) {
+                CheckIfAdmin = 1;
+            } else {
+                CheckIfAdmin = 0;
+            }
+            if (AddCNP != "" && AddFirstName != "" && AddLastName != "" && AddPassword != "" && AddTagNumber != "") {
+                var addUserURL = encodeURI("/AddUser" + "?" + "AddCNP=" + AddCNP + "&" + "AddFirstName=" + AddFirstName + "&" + "AddLastName=" + AddLastName + "&" + "AddPassword=" + AddPassword + "&" + "AddTagNumber=" + AddTagNumber + "&" + "CheckIfAdmin=" + CheckIfAdmin);
+                var addUserResult = await fetch(addUserURL);
+                var message = await addUserResult.json();
+                if (addUserResult.status == 200) {
+
+                   
+                    this.ShowModal(message.ResponseText);
+                    console.log(message.ResponseText);
+                    console.log(message);
+                   
+                }
+                else {
+                    this.ShowModal(message.Warning);
+                    console.log(message.Warning);
+                }
+            } else {
+                this.ShowModal("Fill all fields before submitting the form!");
+            }
+        },
+        async AddProductAction() {
+            var AddProductID = document.getElementById("ID").value;
+            var AddProductName = document.getElementById("Name").value;
+            var AddProductQuantity = document.getElementById("Quantity").value
+            var AddProductPosition = this.ProductPosition;
+            var AddProductPrice = document.getElementById("Price").value;
+            if (AddProductName != "" && AddProductQuantity != "" && AddProductPosition != "" && AddProductPrice != "") {
+                var addProductURL = encodeURI("/AddProduct" + "?" + "AddProductID=" + AddProductID + "&" +"AddProductName=" + AddProductName + "&" + "AddProductQuantity=" + AddProductQuantity + "&" + "AddProductPosition=" + AddProductPosition + "&" + "AddProductPrice=" + AddProductPrice);
+                var addProductResult = await fetch(addProductURL);
+                var message = await addProductResult.json();
+                if (addProductResult.status == 200) {                 
+                    this.ShowModal(message.ResponseText);
+                    console.log(message.ResponseText);
+                    console.log(message);                  
+                }
+                else {
+                    this.ShowModal(message.Warning);
+                    console.log(message.Warning);
+                }
+            } else {
+                this.ShowModal("Fill all fields before submitting the form!");
+            }
+        },
+        async ChangePassword() {
+            var oldPassword = document.getElementById("oldPassword").value;
+            var newPassword = document.getElementById("newPassword").value;
+            var confirmation = document.getElementById("confirmation").value;
+           
+            if (newPassword === confirmation && oldPassword != "" && newPassword != "" && confirmation != ""){
+                
+                var ChangePasswordURL = encodeURI("/Test" + "?" + "oldPassword=" + oldPassword + "&" + "newPassword=" + newPassword + "&" + "Confirmation=" + confirmation);
+                var ChangePasswordResult = await fetch(ChangePasswordURL);
+                var message = await ChangePasswordResult.json();
+                if (ChangePasswordResult.status == 200) {                   
+                    this.ShowModal("Password was changed");
+                }
+                else {
+                    this.ShowModal(message.Warning);
+                    console.log(message.Warning);
+                }
+               
+            } else {
+                this.ShowModal("Fill all fields before submitting the form!");
+            }  
+        },
+        async SubmitEditProduct() {
+            var ProductName = document.getElementById("ProductName").value;
+            var ProductPosition = this.ProductPosition;
+            var ProductPice = document.getElementById("ProductPrice").value;
+            var ProductQuantity = document.getElementById("quantity").value;
+            var id = this.crtProduct.ID;
+            if (ProductName != "" && ProductPosition != "" && ProductPice != "") {
+                var EditProductURL = encodeURI("/EditProduct" + "?" + "ID=" + id + "&" +"ProductName=" + ProductName + "&" + "ProductPosition=" + ProductPosition + "&" + "ProductPice=" + ProductPice);
+                var EditProductResult = await fetch(EditProductURL);
+                console.log(EditProductResult.status);
+                if (EditProductResult.status == 200) {
+                    this.ShowModal("Product info's has been updated");
+                    for (message in messages) {
+                        this.message.Name = ProductName;
+                        this.message.Position = ProductPosition;
+                        this.message.Quantity = ProductQuantity;
+                        this.message.Price = ProductPice;
+                        console.log(messages.ResponseText);
+
+                    }
+                }
+                else {
+                    this.ShowModal("Product info's couldn't been updated");
+                    console.log(messages.Warning);
+                }
+                
+            } else {
+                this.ShowModal("Fill all fields before submitting the form!");
+            }
+            this.GetProducts();
+        },
+        EditUserModal: function (user) {
+           $('.ui.modal.user.edit')
+                .modal('show')
+                ;
+            this.TempUserEdit = user;
+        },
+        EditProductModal: function (product) {
+            this.crtProduct = product;
+            $('.ui.modal.product.edit')
+                .modal('show')
+                ;
+        },
+        SubmitAddUser: function () {
+            this.AddUserAction();
+        },
+        SubmitEditUser: function () {
+            this.EditUser();
+        },
+        SubmitAddProduct: function () {
+            this.AddProductAction();
+        },
+        UserChangePassword: function () {
+            this.ChangePassword();
+        },
+        Quantity: function (operation) {
+            if (operation === 'add'){
+                    this.quantity = this.quantity + 1;
+                  
+            }
+            else if (operation === 'subtract' && this.quantity >= 1) {              
+                    this.quantity = this.quantity - 1;
+                             
+            }
+           
+        },
+        getInfo: function () {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var isUser = false;
+            PostInServer(username, password);
+            isUser = true;           
+            if (!isUser) {
+              
+                alert("Sorry, you don't have an account.");               
+            }
+            else {
+                this.UserIsLogged = true;
+            }
+        },
+        Motor1: function () {
+            this.TestPushMotor1();
+        },
+        Motor2: function () {
+            this.TestPushMotor2();
+        },
+        Motor3: function () {
+            this.TestPushMotor3();
+        },
+        Motor4: function(){
+            this.TestPushMotor4();
+        },
+        async TestPushMotor1 () {
+            var url = encodeURI("/Motor1");
+            var result = await fetch(url);
+            console.log(result);
+            console.log(result.status);
+            if (result.status === 200) {
+                console.log("Rotate motor m1!");
+            } else {
+                console.log("Couldn't rotate motor m1");
+            }
+            if (this.isPushed1)
+                return;
+            this.isPushed1 = true;
+            $("#id_button1").val("Pushed").addClass("disabled");
+            $("#motor1").removeClass("css_off").addClass("css_on");
+
+           
+
+                setTimeout(() => {
+                    this.isPushed1 = false;
+                    $("#id_button1").val("Push 360").removeClass("disabled");
+                    $("#motor1").removeClass("css_on").addClass("css_off");
+                   
+
+                }, 4000);
+        },
+       
+        async TestPushMotor2 () {
+            var url = encodeURI("/Motor2");
+            var result = await fetch(url);
+            console.log(result);
+            console.log(result.status);
+            if (result.status === 200) {
+                console.log("Rotate motor m2!");
+            } else {
+                console.log("Couldn't rotate motor m2");
+            }
+             if (this.isPushed2)
+                return;
+            this.isPushed2 = true;
+            $("#id_button2").val("Pushed").addClass("disabled");
+            $("#motor2").removeClass("css_off").addClass("css_on");
+
+                setTimeout(() => {
+                    this.isPushed2 = false;
+                    $("#id_button2").val("Push 360").removeClass("disabled");
+                    $("#motor2").removeClass("css_on").addClass("css_off");
+                   
+
+                }, 4000);
+        },
+        async TestPushMotor3 () {
+            var url = encodeURI("/Motor3");
+            var result = await fetch(url);
+            console.log(result);
+            console.log(result.status);
+            if (result.status === 200) {
+                console.log("Rotate motor m3!");
+            } else {
+                console.log("Couldn't rotate motor m3");
+            }
+            if (this.isPushed3)
+                return;
+            this.isPushed3 = true;
+            $("#id_button3").val("Pushed").addClass("disabled");
+            $("#motor3").removeClass("css_off").addClass("css_on");
+ 
+            setTimeout(() => {
+                this.isPushed3 = false;
+                $("#id_button3").val("Push 360").removeClass("disabled");
+                $("#motor3").removeClass("css_on").addClass("css_off");
+               
+
+            }, 3000);
+        },
+       async  TestPushMotor4() {
+            var url = encodeURI("/Motor4");
+            var result = await fetch(url);
+            console.log(result);
+            console.log(result.status);
+            if (result.status === 200) {
+                console.log("Rotate motor m4!");
+            } else {
+                console.log("Couldn't rotate motor m4");
+            }
+            if (this.isPushed4)
+                return;
+            this.isPushed4 = true;
+            $("#id_button4").val("Pushed").addClass("disabled");
+            $("#motor4").removeClass("css_off").addClass("css_on");
+
+            setTimeout(() => {
+                this.isPushed4 = false;
+                $("#id_button4").val("Push 360").removeClass("disabled");
+                $("#motor4").removeClass("css_on").addClass("css_off");
+               
+
+            }, 3000);
+
+        }
+
+    },
+}).mount("#app");
+    </script>
+    
+</body>
+
+</html>

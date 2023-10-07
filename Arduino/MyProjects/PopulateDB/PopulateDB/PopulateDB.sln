@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PopulateDB", "PopulateDB\PopulateDB.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "esp_arduino_sqlite3_lib-1.0-0.9", "Libraries\esp_arduino_sqlite3_lib-1.0\0.9\esp_arduino_sqlite3_lib-1.0\esp_arduino_sqlite3_lib-1.0-0.9.vcxitems", "{5671232F-218E-45CD-ADED-A868926A855F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MFRC522-I2C-Library-master-0.0.0", "Libraries\MFRC522-I2C-Library-master\0.0.0\MFRC522-I2C-Library-master\MFRC522-I2C-Library-master-0.0.0.vcxitems", "{6EC18192-5D48-4C44-96B2-73CB49B410CB}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\esp_arduino_sqlite3_lib-1.0\0.9\esp_arduino_sqlite3_lib-1.0\esp_arduino_sqlite3_lib-1.0-0.9.vcxitems*{5671232f-218e-45cd-aded-a868926a855f}*SharedItemsImports = 9
+		Libraries\MFRC522-I2C-Library-master\0.0.0\MFRC522-I2C-Library-master\MFRC522-I2C-Library-master-0.0.0.vcxitems*{6ec18192-5d48-4c44-96b2-73cb49b410cb}*SharedItemsImports = 9
+		Libraries\esp_arduino_sqlite3_lib-1.0\0.9\esp_arduino_sqlite3_lib-1.0\esp_arduino_sqlite3_lib-1.0-0.9.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61854339-C015-44E4-96AB-A02D1AF15217}
+	EndGlobalSection
+EndGlobal

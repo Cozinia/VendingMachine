@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin's Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+
+</head>
+<body>
+    <div id="App">
+        <h1>Run SQLite script</h1>
+
+        <form >
+            <p><label for="SQLiteCommand">Insert SQLite command:</label></p>
+            <textarea id="SQLiteCommand" name="SQLiteCommand" rows="4" cols="50"></textarea>
+            <br>
+            <button class="ui button" type="button" v-on:click="GoToSendSQLCommand()">Run</button>
+        </form>
+
+        <p>
+            Click the "Submit" button and the form-data will be sent to the server.
+        </p>
+
+        <hr>
+        <table class="table">
+            <thead>
+                <tr style="background-color :antiquewhite">
+                    <th v-for="(value, name) in result[0]"> {{name}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in result"  >
+                    <td v-for="(value, name) in item">{{value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        Vue.createApp({
+            el: '#App',
+            data() {
+                return {
+                   result: []
+
+                }
+
+            },
+          
+            methods: {
+                async SendSQLCommand() {
+                    console.log("SendSQLCommand\n");
+                    var sqlCommand = document.getElementById("SQLiteCommand").value;
+                    var url = encodeURI("/Test" + "?" + "SQLCommand=" + sqlCommand);
+                    var result = await fetch(url);
+                    console.log(result);
+                    if (result.status == 200) {
+                        this.result = await result.json();
+                        console.log(this.result);
+                        console.log(this.result.FirstName);
+                        
+                    }
+                },
+                GoToSendSQLCommand:function(){
+                    console.log("GoToSendSQLCommand\n");
+                    this.SendSQLCommand();
+                }
+               
+            },
+
+
+        }).mount('#App');
+    </script>
+</body>
+</html>

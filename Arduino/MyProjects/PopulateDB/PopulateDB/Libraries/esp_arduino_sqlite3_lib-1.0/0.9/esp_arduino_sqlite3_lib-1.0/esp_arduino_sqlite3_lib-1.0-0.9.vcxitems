@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding ="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup Label="Globals" >
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{5671232f-218e-45cd-aded-a868926a855f}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\esp8266.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\sdfat_fns.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\spiffs_fns.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\sqlite3.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\vfs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\config.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\config_ext.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\sdfat_fns.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\spiffs_fns.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\sqlite3.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\sqlite3ext.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vfs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vfs_int.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)keywords.txt" />
+<Text Include="$(MSBuildThisFileDirectory)library.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)d1_mini_msd_shield.png" />
+<None Include="$(MSBuildThisFileDirectory)d1_mini_msd_shield_strip.png" />
+<None Include="$(MSBuildThisFileDirectory)LICENSE" />
+<None Include="$(MSBuildThisFileDirectory)output_screenshot.png" />
+<None Include="$(MSBuildThisFileDirectory)README.md" />
+  </ItemGroup>
+</Project>

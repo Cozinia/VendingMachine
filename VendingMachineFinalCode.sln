@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VendingMachineFinalCode", "VendingMachineFinalCode\VendingMachineFinalCode.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESP8266WebServer-1.0", "Libraries\ESP8266WebServer\1.0\ESP8266WebServer\ESP8266WebServer-1.0.vcxitems", "{6496C6E2-FFFE-4731-9968-3A7E900206E3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESP8266WiFi-1.0", "Libraries\ESP8266WiFi\1.0\ESP8266WiFi\ESP8266WiFi-1.0.vcxitems", "{1F9CC5B9-60C1-4336-AC27-159CD7B6D9C2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SPI-1.0", "Libraries\SPI\1.0\SPI\SPI-1.0.vcxitems", "{B1091B30-DF0E-4A8F-B8A6-7040B5B14052}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LiquidCrystal-1.0.7", "Libraries\LiquidCrystal\1.0.7\LiquidCrystal\LiquidCrystal-1.0.7.vcxitems", "{E460F306-1B5D-41D7-90F3-D36326482C1C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Button-0.0.0", "Libraries\Button\0.0.0\Button\Button-0.0.0.vcxitems", "{F101D53A-3470-4A63-BF0B-8AC3BFB76D80}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MFRC522-1.4.10", "Libraries\MFRC522\1.4.10\MFRC522\MFRC522-1.4.10.vcxitems", "{F4176384-580A-4E6A-A53B-7D78EE47B9EC}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\ESP8266WiFi\1.0\ESP8266WiFi\ESP8266WiFi-1.0.vcxitems*{1f9cc5b9-60c1-4336-ac27-159cd7b6d9c2}*SharedItemsImports = 9
+		Libraries\ESP8266WebServer\1.0\ESP8266WebServer\ESP8266WebServer-1.0.vcxitems*{6496c6e2-fffe-4731-9968-3a7e900206e3}*SharedItemsImports = 9
+		Libraries\SPI\1.0\SPI\SPI-1.0.vcxitems*{b1091b30-df0e-4a8f-b8a6-7040b5b14052}*SharedItemsImports = 9
+		Libraries\Button\0.0.0\Button\Button-0.0.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\ESP8266WebServer\1.0\ESP8266WebServer\ESP8266WebServer-1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\ESP8266WiFi\1.0\ESP8266WiFi\ESP8266WiFi-1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\LiquidCrystal\1.0.7\LiquidCrystal\LiquidCrystal-1.0.7.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\MFRC522\1.4.10\MFRC522\MFRC522-1.4.10.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\SPI\1.0\SPI\SPI-1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\LiquidCrystal\1.0.7\LiquidCrystal\LiquidCrystal-1.0.7.vcxitems*{e460f306-1b5d-41d7-90f3-d36326482c1c}*SharedItemsImports = 9
+		Libraries\Button\0.0.0\Button\Button-0.0.0.vcxitems*{f101d53a-3470-4a63-bf0b-8ac3bfb76d80}*SharedItemsImports = 9
+		Libraries\MFRC522\1.4.10\MFRC522\MFRC522-1.4.10.vcxitems*{f4176384-580a-4e6a-a53b-7d78ee47b9ec}*SharedItemsImports = 9
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27370201-B697-490C-B496-7DB2301FA792}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestWebAppArduinoServer.ino" />
+    <None Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\cont.S" />
+    <None Include="ModifCode29.04.2022" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="__vm\.TestWebAppArduinoServer.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Arduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\base64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\binary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\cbuf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\cont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\coredecls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_features.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\eboot_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Esp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\esp8266_peri.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\flash_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\FS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\FSImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\FunctionalInterrupt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\HardwareSerial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\i2s.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\interrupts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\IPAddress.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\libb64\cdecode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\libb64\cencode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\MD5Builder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\pgmspace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Printable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Schedule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\sigma_delta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\spiffs\spiffs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\spiffs\spiffs_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\spiffs\spiffs_nucleus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\spiffs_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\stdlib_noniso.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\StreamString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\twi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\uart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Udp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\umm_malloc\umm_malloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\umm_malloc\umm_malloc_cfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Updater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\user_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\WCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\wiring_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\WString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\variants\nodemcu\pins_arduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\abi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\base64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\cbuf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\cont_util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_eboot_command.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_flash_utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_i2s.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_noniso.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_phy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_postmortem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_si2c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_timer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_wiring.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_wiring_analog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_wiring_digital.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_wiring_pulse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_wiring_pwm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\core_esp8266_wiring_shift.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Esp-version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Esp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\FS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\FunctionalInterrupt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\HardwareSerial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\heap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\IPAddress.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\libc_replacements.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\MD5Builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\pgmspace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Print.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Schedule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\sntp-lwip2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\spiffs_api.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\spiffs_hal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\StreamString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Tone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\uart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\Updater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\WMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266\WString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Text.txt" />
+    <Text Include="WorkingCode.txt" />
+  </ItemGroup>
+</Project>

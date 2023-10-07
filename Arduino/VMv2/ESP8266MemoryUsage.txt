@@ -1,0 +1,8 @@
+Program size: 504,092 bytes (used 48% of a 1,044,464 byte maximum) (13.19 secs)
+Minimum Memory Usage: 56328 bytes (69% of a 81920 byte maximum)
+
+Program size: 504,604 bytes (used 48% of a 1,044,464 byte maximum) (13.35 secs)
+Minimum Memory Usage: 56696 bytes (69% of a 81920 byte maximum)
+
+Program size: 505,012 bytes (used 48% of a 1,044,464 byte maximum) (14.29 secs)
+Minimum Memory Usage: 57016 bytes (70% of a 81920 byte maximum)
